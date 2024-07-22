@@ -39,7 +39,11 @@ function Deposit(){
     
     let amount=document.getElementById('depAmount').value;
     let AccNo=document.getElementById('AcNo').value;
-   alert(`Entered amount is ${amount} \n Please enter confirm to continue`)
+    if(!amount||!AccNo){
+        customAlert.alert("Please enter all the details")
+    }
+    else{
+        alert(`Entered amount is ${amount} \n Please enter confirm to continue`)
     let orginalAcNo=localStorage.getItem('ACNO');
     let balance=localStorage.getItem("BALANCE") 
 
@@ -51,6 +55,8 @@ function Deposit(){
     }else{ 
         customAlert.alert("Wrong Account Number")
     }
+    }
+   
 
 
 }
