@@ -56,9 +56,12 @@ function withdraw(){
     
     let amount=document.getElementById('withAmount').value;
     let AccNo=document.getElementById('AccNo').value;
-   alert(`Entered amount is ${amount} \n Please enter confirm to continue`)
     let orginalAcNo=localStorage.getItem('ACNO');
     let balance=localStorage.getItem("BALANCE") 
+
+    alert(`Balance Before Withdrawal is ${balance}`)
+    alert(`Entered amount is ${amount} \n Please enter confirm to continue`)
+    
 
     if(AccNo===orginalAcNo){ 
         if(amount<balance){
@@ -66,7 +69,7 @@ function withdraw(){
         
         localStorage.setItem('BALANCE',newBalance) 
         customAlert.alert(`Amount of Rupees ${amount} Debited from Your Account`)
-        
+        wOutput.innerHTML=`<p>Your Current Balance is ${newBalance}</p>`
         }else{
             customAlert.alert("Insufficient Balance")
             wOutput.innerHTML=`<p>Your Current Balance is ${balance}</p>`
