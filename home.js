@@ -60,40 +60,39 @@ function Deposit(){
 
 
 }
-function withdraw(){ 
+
+function withdraw() { 
+    let amount = parseInt(document.getElementById('withAmount').value);
+    let AccNo = document.getElementById('AccNo').value;
     
-    let amount=document.getElementById('withAmount').value;
-    let AccNo=document.getElementById('AccNo').value;
-    if(!amount||!AccNo){
-        customAlert.alert("Please enter the amount and account number")
-    }
-    else{
-        let orginalAcNo=localStorage.getItem('ACNO');
-        let balance=localStorage.getItem("BALANCE") 
+    if (!amount || !AccNo) {
+        customAlert.alert("Please enter the amount and account number");
+    } else {
+        let originalAcNo = localStorage.getItem('ACNO');
+        let balance = parseInt(localStorage.getItem("BALANCE")); 
 
-        alert(`Balance Before Withdrawal is ${balance}`)
-        alert(`Entered amount is ${amount} \n Please enter confirm to continue`)
-        
+        alert(`Balance Before Withdrawal is ${balance}`);
+        alert(`Entered amount is ${amount} \n Please enter confirm to continue`);
 
-    if(AccNo===orginalAcNo){ 
-        if(amount<=balance){
-            let newBalance=parseInt(balance)-parseInt(amount);
-        
-        localStorage.setItem('BALANCE',newBalance) 
-        customAlert.alert(`Amount of Rupees ${amount} Debited from Your Account`)
-        wOutput.innerHTML=`<p>Your Current Balance is ${newBalance}</p> <img style="width:100px; " src="https://media.lordicon.com/icons/wired/lineal/2066-withdrawal.gif" alt="">`
-        }else{
-            customAlert.alert("Insufficient Balance")
-            wOutput.innerHTML=`<p>Your Current Balance is ${balance}</p>`
+        if (AccNo === originalAcNo) { 
+            if (amount <= balance) {
+                let newBalance = balance - amount;
+                localStorage.setItem('BALANCE', newBalance);
+                customAlert.alert(`Amount of Rupees ${amount} Debited from Your Account`);
+                document.getElementById('wOutput').innerHTML = `
+                    <p>Your Current Balance is ${newBalance}</p>
+                    <img style="width:100px;" src="https://media.lordicon.com/icons/wired/lineal/2066-withdrawal.gif" alt="">
+                `;
+            } else {
+                customAlert.alert("Insufficient Balance");
+                document.getElementById('wOutput').innerHTML = `<p>Your Current Balance is ${balance}</p>`;
+            }
+        } else { 
+            customAlert.alert("Wrong Account Number");
         }
-    }else{ 
-        customAlert.alert("Wrong Account Number")
     }
-
-    }
-    
-
 }
+
 
 function checkBalance() {
     let AcNo = document.getElementById('BalanceAcno').value; // Get the value of the input field
