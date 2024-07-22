@@ -27,6 +27,8 @@ function CustomAlert(){
   
   let customAlert = new CustomAlert();
 
+  usernme.innerHTML=localStorage.getItem('NAME')
+
 function logout(){
     customAlert.alert("Are you really want to logout?")
     localStorage.clear()
