@@ -76,7 +76,7 @@ function withdraw(){
         
 
     if(AccNo===orginalAcNo){ 
-        if(balance>=amount){
+        if(amount<=balance){
             let newBalance=parseInt(balance)-parseInt(amount);
         
         localStorage.setItem('BALANCE',newBalance) 
