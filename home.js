@@ -58,15 +58,19 @@ function withdraw(){
     
     let amount=document.getElementById('withAmount').value;
     let AccNo=document.getElementById('AccNo').value;
-    let orginalAcNo=localStorage.getItem('ACNO');
-    let balance=localStorage.getItem("BALANCE") 
+    if(!amount||!AccNo){
+        customAlert.alert("Please enter the amount and account number")
+    }
+    else{
+        let orginalAcNo=localStorage.getItem('ACNO');
+        let balance=localStorage.getItem("BALANCE") 
 
-    alert(`Balance Before Withdrawal is ${balance}`)
-    alert(`Entered amount is ${amount} \n Please enter confirm to continue`)
-    
+        alert(`Balance Before Withdrawal is ${balance}`)
+        alert(`Entered amount is ${amount} \n Please enter confirm to continue`)
+        
 
     if(AccNo===orginalAcNo){ 
-        if(amount<balance){
+        if(balance>=amount){
             let newBalance=parseInt(balance)-parseInt(amount);
         
         localStorage.setItem('BALANCE',newBalance) 
@@ -80,18 +84,27 @@ function withdraw(){
         customAlert.alert("Wrong Account Number")
     }
 
+    }
+    
 
 }
 
-function checkBalance(){
-    let orginalAcNo=localStorage.getItem('ACNO');
-    let balance=localStorage.getItem("BALANCE")
-    if(orginalAcNo===localStorage.getItem('ACNO')){
-        customAlert.alert(`Your Current Balance is ${balance}`)
-        bOutput.innerHTML=`<p>Your Current Balance is ${balance}</p>`;
-    }else{
-        customAlert.alert("Wrong Account Number")
+function checkBalance() {
+    let AcNo = document.getElementById('BalanceAcno').value; // Get the value of the input field
+    if (!AcNo) { 
+        customAlert.alert("Please enter the account number");
+    } else {
+        let storedAcNo = localStorage.getItem('ACNO');
+        let balance = localStorage.getItem("BALANCE");
+        
+        if (AcNo === storedAcNo) {
+            customAlert.alert(`Your Current Balance is ${balance}`);
+            document.getElementById('bOutput').innerHTML = `<p>Your Current Balance is ${balance}</p>`;
+        } else {
+            customAlert.alert("Wrong Account Number");
+        }
     }
 }
+
 
 
