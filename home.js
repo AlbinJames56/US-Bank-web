@@ -47,7 +47,7 @@ function Deposit(){
         let newBalance=parseInt(balance)+parseInt(amount);
         localStorage.setItem('BALANCE',newBalance) 
         customAlert.alert(`Amount of Rupees ${amount} Credited to Your Account`)
-        dOutput.innerHTML=`<p>Your Current Balance is ${newBalance}</p>`
+        dOutput.innerHTML=`<p>Your Current Balance is ${newBalance}</p><img style="width:100px; " src="https://cdnl.iconscout.com/lottie/premium/thumb/cash-deposit-5412445-4562596.gif" alt="">`
     }else{ 
         customAlert.alert("Wrong Account Number")
     }
@@ -71,7 +71,7 @@ function withdraw(){
         
         localStorage.setItem('BALANCE',newBalance) 
         customAlert.alert(`Amount of Rupees ${amount} Debited from Your Account`)
-        wOutput.innerHTML=`<p>Your Current Balance is ${newBalance}</p>`
+        wOutput.innerHTML=`<p>Your Current Balance is ${newBalance}</p> <img style="width:100px; " src="https://media.lordicon.com/icons/wired/lineal/2066-withdrawal.gif" alt="">`
         }else{
             customAlert.alert("Insufficient Balance")
             wOutput.innerHTML=`<p>Your Current Balance is ${balance}</p>`
